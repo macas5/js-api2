@@ -34,8 +34,19 @@ export const getFavouritePlacesByCondition = async (req, res) => {
     }
 }
 
+export const getFavouritePlacesAnimals = async (req, res) => {
+    try {
+        const favouritePlace = await favouritePlaceModel.findById(req.params.id);
+        res.status(202).json(favouritePlace.animal);
+    } catch (error) {
+        console.error(error);
+        res.status(405).send(error);
+    }
+}
+
 export const updateFavouritePlaceByCondition = async (req, res) => {
     try {
+        console.log(req.body[1]);
         const favouritePlace = await favouritePlaceModel.updateOne(req.body[0], {$set: req.body[1]});
         res.status(202).json(favouritePlace);
     } catch (error) {
