@@ -1,5 +1,10 @@
 import express from 'express';
-import { createAnimal, deleteAnimalByCondition, getAnimalByCondition, getAnimals, updateAnimalByCondition } from '../controllers/animalController.js';
+import { createAnimal, 
+    deleteAnimalByCondition, 
+    getAnimalByCondition, 
+    getAnimals, 
+    updateAnimalByCondition } 
+    from '../controllers/animalController.js';
 
 const routes = express.Router();
 
