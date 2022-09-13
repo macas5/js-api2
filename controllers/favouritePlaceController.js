@@ -59,7 +59,6 @@ export const getFavouritePlacesAnimals = async (req, res) => {
 
 export const updateFavouritePlaceByCondition = async (req, res) => {
     try {
-        console.log(req.body[1]);
         const favouritePlace = await favouritePlaceModel.updateOne(req.body[0], {$set: req.body[1]});
         res.status(202).json(favouritePlace);
     } catch (error) {
