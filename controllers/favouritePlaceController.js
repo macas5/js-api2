@@ -1,3 +1,6 @@
+import birdModel from '../models/birdModel.js';
+import catModel from '../models/catModel.js';
+import dogModel from '../models/dogModel.js';
 import favouritePlaceModel from '../models/favouritePlaceModel.js';
 import favPlaceModel from '../models/favouritePlaceModel.js'
 
@@ -35,9 +38,19 @@ export const getFavouritePlacesByCondition = async (req, res) => {
 }
 
 export const getFavouritePlacesAnimals = async (req, res) => {
+    const animalModels = {
+        ["bird"]: birdModel,
+        ["cat"]: catModel,
+        ["dog"]: dogModel,
+      };
     try {
         const favouritePlace = await favouritePlaceModel.findById(req.params.id);
-        res.status(202).json(favouritePlace.animal);
+        const animals = await Promise.all(
+            favouritePlace.animal.map(async (animal) => {
+                return await animalModels[animal.modelName].findOne({name: animal.name});
+           })
+        )
+        res.status(202).json(animals);
     } catch (error) {
         console.error(error);
         res.status(405).send(error);
@@ -64,3 +77,17 @@ export const deleteFavouritePlaceByCondition = async (req, res) => {
         res.status(405).send(error);
     }
 }
+
+export const getMostPopularPlace = async (req, res) => {
+    try {
+        const allPlaces = await favouritePlaceModel.find();
+        const mostPopular = allPlaces.reduce ((prev, curr) => 
+            prev.animal.length > curr.animal.length ? prev : curr)
+        res.status(200).json(mostPopular.place);
+        
+    } catch (error) {
+        console.error(error);
+        res.status(405).send(error);
+    }
+}
+

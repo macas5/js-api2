@@ -18,7 +18,7 @@ export const createAnimal = async (req, res) => {
                 ...req.body
             });
         await newAnimal.save();
-        return res.status(201).send("New animal entry created");
+        return res.status(201).send(`New ${type} entry created`);
     } catch (error) {
         console.error(error);
         res.status(405).send(error);

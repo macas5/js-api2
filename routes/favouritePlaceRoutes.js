@@ -4,6 +4,7 @@ import { createFavouritePlace,
     getFavouritePlaces, 
     getFavouritePlacesAnimals, 
     getFavouritePlacesByCondition, 
+    getMostPopularPlace, 
     updateFavouritePlaceByCondition } 
     from '../controllers/favouritePlaceController.js';
 
@@ -14,6 +15,8 @@ routes.post('/create', createFavouritePlace);
 routes.get('/get', getFavouritePlaces);
 routes.get('/find', getFavouritePlacesByCondition);
 routes.get('/getAnimals/:id', getFavouritePlacesAnimals);
+routes.get('/mostpopular', getMostPopularPlace);
+
 
 routes.put('/update', updateFavouritePlaceByCondition);
 
