@@ -1,4 +1,3 @@
-// import express from "express";
 import birdModel from '../models/birdModel.js'
 import dogModel from '../models/dogModel.js'
 import catModel from '../models/catModel.js'

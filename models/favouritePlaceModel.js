@@ -18,7 +18,7 @@ const favouritePlaceSchema = new mongoose.Schema({
     photo: {
         type: String,
     },
-    favoriteRating: {
+    favouriteRating: {
         type: Number,
         min: 0,
         max: 10,
